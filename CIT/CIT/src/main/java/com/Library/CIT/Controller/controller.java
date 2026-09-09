@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,9 +32,9 @@ public class controller {
         return service.getData(id);
     }
 
-    @GetMapping("/getAll")
-    public ResponseEntity<List<model>> getAllData() {
-        List<model> dataList = service.Book_user_owned();
+    @GetMapping("/getAll/{id}")
+    public ResponseEntity<List<model>> getAllData(@PathVariable Long id) {
+        List<model> dataList = service.Book_user_owned(id);
         return ResponseEntity.ok(dataList);
     }
 

@@ -29,7 +29,7 @@ public class Services {
         return Repo.existsById(id);
     }
 
-    public List<model> Book_user_owned() {
-        return restTemplate.getForObject("http://localhost:8082/inventery/userid/{id}/getAll", List.class);
+    public List<model> Book_user_owned(Long id) {
+        return restTemplate.getForObject("http://localhost:8082/inventery/userid/{id}/getAll", List.class, id);
     }
 }

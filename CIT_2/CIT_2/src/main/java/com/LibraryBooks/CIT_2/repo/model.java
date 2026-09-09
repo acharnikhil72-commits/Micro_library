@@ -14,6 +14,7 @@ public class model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Book_id;
+    private Long userId;
     private Integer BookPrice;
     private Integer BookQuantity;
 }
