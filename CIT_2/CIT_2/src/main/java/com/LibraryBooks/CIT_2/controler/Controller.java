@@ -1,7 +1,10 @@
 package com.LibraryBooks.CIT_2.controler;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,5 +29,10 @@ public class Controller {
     @GetMapping("/get")
     public boolean getData(@RequestParam Long id) {
         return service.getData(id);
+    }
+
+    @GetMapping("/userid/{id}/getAll")
+    public List<model> getAllData(@PathVariable Long id) {
+        return service.Book_user_owned(id);
     }
 }

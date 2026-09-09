@@ -1,6 +1,9 @@
 package com.Library.CIT.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +29,12 @@ public class controller {
     @GetMapping("/get")
     public Boolean getData(@RequestParam Long id) {
         return service.getData(id);
+    }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<model>> getAllData() {
+        List<model> dataList = service.Book_user_owned();
+        return ResponseEntity.ok(dataList);
     }
 
 }
