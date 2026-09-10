@@ -33,9 +33,7 @@ public class controller {
     }
 
     @GetMapping("/getAll/{id}")
-    public ResponseEntity<List<model>> getAllData(@PathVariable Long id) {
-        List<model> dataList = service.Book_user_owned(id);
-        return ResponseEntity.ok(dataList);
+    public List<String> Book_user_owned(@PathVariable Long id) {
+        return service.Book_user_owned(id);
     }
-
 }
