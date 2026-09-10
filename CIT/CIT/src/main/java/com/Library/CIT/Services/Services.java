@@ -2,28 +2,27 @@ package com.Library.CIT.Services;
 
 import java.util.List;
 
-import org.jspecify.annotations.Nullable;
+// import org.jspecify.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
+// import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
-import org.springframework.web.client.RestTemplate;
+// import org.springframework.web.client.RestTemplate;
 import com.Library.CIT.Repo.model;
 import com.Library.CIT.Repo.repo;
 
 @Service
 public class Services {
 
-    private final DiscoveryClient discoveryClient;
+    // private final DiscoveryClient discoveryClient;
     private final RestClient restClient;
 
-    @Autowired
-    private RestTemplate restTemplate;
+    // @Autowired
+    // private RestTemplate restTemplate;
 
-    public Services(DiscoveryClient discoveryClient, RestClient restClient) {
+    public Services(RestClient restClient) {
 
-        this.discoveryClient = discoveryClient;
         this.restClient = restClient;
     }
 
@@ -47,14 +46,13 @@ public class Services {
     // })
     // .toList();
     // }
-
     public List<String> Book_user_owned(Long id) {
         ResponseEntity<String> result = restClient.get()
                 .uri("http://LIB_BOOKS/inventory/userid/{id}/getAll", id)
                 .retrieve()
                 .toEntity(String.class);
-        return List.of(result.getBody());
 
+        return List.of(result.getBody());
     }
 
 }
