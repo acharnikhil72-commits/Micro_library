@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClient;
+
+import com.Library.CIT.Config.FiegnClintConfig;
+// import org.springframework.web.client.RestClient;
 // import org.springframework.web.client.RestTemplate;
 import com.Library.CIT.Repo.model;
 import com.Library.CIT.Repo.repo;
@@ -16,14 +18,16 @@ import com.Library.CIT.Repo.repo;
 public class Services {
 
     // private final DiscoveryClient discoveryClient;
-    private final RestClient restClient;
+    // private final RestClient restClient;
 
     // @Autowired
     // private RestTemplate restTemplate;
 
-    public Services(RestClient restClient) {
+    private final FiegnClintConfig feignClientConfig;
 
-        this.restClient = restClient;
+    public Services(FiegnClintConfig feignClientConfig) {
+
+        this.feignClientConfig = feignClientConfig;
     }
 
     @Autowired
@@ -46,13 +50,21 @@ public class Services {
     // })
     // .toList();
     // }
-    public List<String> Book_user_owned(Long id) {
-        ResponseEntity<String> result = restClient.get()
-                .uri("http://Lib-books/inventory/userid/{id}/getAll", id)
-                .retrieve()
-                .toEntity(String.class);
 
-        return List.of(result.getBody());
+    // # RestClient implementation
+    // public List<String> Book_user_owned(Long id) {
+    // ResponseEntity<String> result = restClient.get()
+    // .uri("http://Lib-books/inventory/userid/{id}/getAll", id)
+    // .retrieve()
+    // .toEntity(String.class);
+
+    // return List.of(result.getBody());
+    // }
+    public List<String> Book_user_owned(Long id) {
+
+        return feignClientConfig.getAllData(id).stream()
+                .map(model -> model.getBookName())
+                .toList();
     }
 
 }
