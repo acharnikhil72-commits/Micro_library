@@ -48,7 +48,7 @@ public class Services {
     // }
     public List<String> Book_user_owned(Long id) {
         ResponseEntity<String> result = restClient.get()
-                .uri("http://LIB_BOOKS/inventory/userid/{id}/getAll", id)
+                .uri("http://Lib-books/inventory/userid/{id}/getAll", id)
                 .retrieve()
                 .toEntity(String.class);
 
